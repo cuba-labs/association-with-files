@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.sample.web.foo.FooEdit"
+        datasource="fooDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.sample.web.foo">
+    <dsContext>
+        <datasource id="fooDs"
+                    class="com.company.sample.entity.Foo"
+                    view="foo-view">
+            <collectionDatasource id="filesDs"
+                                  property="files"/>
+        </datasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="fooDs">
+            <column width="250px">
+                <field id="name"/>
+            </column>
+        </fieldGroup>
+        <groupBox id="filesBox"
+                  caption="msg://com.company.sample.entity/Foo.files">
+            <table id="filesTable"
+                   height="200px"
+                   width="100%">
+                <actions>
+                    <action id="create"
+                            openType="DIALOG"/>
+                    <action id="add"/>
+                    <action id="edit"
+                            openType="DIALOG"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="extension"/>
+                    <column id="createDate"/>
+                </columns>
+                <rows datasource="filesDs"/>
+                <buttonsPanel>
+                    <button action="filesTable.create"/>
+                    <button action="filesTable.add"/>
+                    <button action="filesTable.edit"/>
+                    <button action="filesTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
